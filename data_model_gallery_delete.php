@@ -8,7 +8,7 @@ function delete_item_from_gallery($delete_item){
     // test how able to reach get(s) on the Gallery class
     // $temp=$delete_item->get_product_id();
 
-	$sql = "DELETE FROM gallery WHERE product_id = '.$delete_item->get_product_id.'";
+	$sql = "DELETE FROM gallery WHERE product_id = '.$delete_item->product_id().'";
 			
 	mysqlI_query($conn, $sql);
 
