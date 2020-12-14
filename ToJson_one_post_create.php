@@ -19,13 +19,13 @@ $data = json_decode(file_get_contents("php://input"));
 
         $myObj=new Gallery();
 
-        // for setting items property values -->    $product->name = $data->name; 
+        // for setting items property values -->    $item->name = $data->name; 
         $myObj->set_product_category($data->product_category);
         $myObj->set_product_type($data->product_type);
         $myObj->set_product_image($data->product_image);
         $myObj->set_product_title($data->product_title);
 
-        $create = create_gallery($myObj);
+        $create = create_item_to_gallery($myObj);
         // echo json_encode($myObj);
         
         if($myObj){
@@ -33,10 +33,10 @@ $data = json_decode(file_get_contents("php://input"));
             echo json_encode(array("message" => "Product has been successfully inserted."));
             echo $myJSON_Created;
             } 
-            // if unable to create the product, tell the user
+            // if unable to create the item, tell the user
             else {
                 http_response_code(503);
-                // tell the user product does not created
+                // tell the user item does not created
                 echo json_encode(array("message" => "Product couldn't be created."));
             }
     } 
