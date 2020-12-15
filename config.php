@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost","root","","silk_shop");
+$conn = mysqli_connect("localhost","root","","api_silk_shop");
 
 // Check connection
 if (mysqli_connect_errno())
