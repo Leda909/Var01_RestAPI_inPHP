@@ -22,5 +22,4 @@ function get_all_gallery(){
         return false;
     }
 }
-
 ?>
