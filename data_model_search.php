@@ -2,10 +2,10 @@
 include_once 'config.php';
 include_once 'model_gallery.php';
 
-function get_item_by_word($keyword){
+function get_item_by_keyword($keyword){
 	global $conn;
     
-	$sql = "SELECT FROM gallery WHERE product_category = '.$keyword->product_category().'";
+	$sql = "SELECT * FROM gallery WHERE '".$keyword."' IN (product_category, product_type)";
 			
 	$result = mysqli_query($conn, $sql);
     $galleries = [];
@@ -15,9 +15,13 @@ function get_item_by_word($keyword){
         while($row = mysqli_fetch_assoc($result)){
             array_push($galleries, $row);
         }
-        return $product;
-        } else {
+        return $galleries;
+    } else {
         return false;
-        }
     }
+}
+
+    // SELECT * FROM gallery WHERE `product_category`='Wall picture' OR `product_type`='Wall picture'
+    // SELECT * FROM gallery WHERE 'Wall picture' IN (`product_category`, `product_type`)
+    // SELECT * FROM gallery WHERE 'Sewn silk product' IN (`product_category`, `product_type`)
 ?>
