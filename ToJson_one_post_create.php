@@ -28,8 +28,8 @@ $data = json_decode(file_get_contents("php://input"));
         $create = create_item_to_gallery($myObj);
         // echo json_encode($myObj);
         
-        if($myObj){
-            $myJSON_Created = json_encode($myObj);
+        if($create){
+            $myJSON_Created = json_encode($create);
             echo json_encode(array("message" => "Product has been successfully inserted."));
             echo $myJSON_Created;
             } 
