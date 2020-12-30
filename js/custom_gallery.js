@@ -5,7 +5,8 @@ $('.portfolio-item').isotope({
 $('.portfolio-menu ul li').click(function(){
     $('.portfolio-menu ul li').removeClass('active');
     $(this).addClass('active');
-  
+    pagination();
+
     var selector = $(this).attr('data-filter');
     var item = $('.data-container');
 
@@ -16,22 +17,18 @@ $('.portfolio-menu ul li').click(function(){
     console.log("item: "+item);
     return  false;
 });
-$(document).ready(function() {
-var popup_btn = $('.popup-btn');
-popup_btn.magnificPopup({
-type : 'image',
-gallery : {
-    enabled : true
-}
-});
-});
+
+
 
 // paggination with paggination.js included with 'data container'
-$('#demo').pagination({
+function pagination() {
+    console.log( "pagination" );
+    $('#demo').pagination({
     dataSource: function(done) {
+    var selector = $('.active').attr('data-filter');
     $.ajax({
         type: 'GET',
-        url: '/Github_SilkLeda/Var01_RestAPI_inPHP/ToJson.php',
+        url: '/Github_SilkLeda/Var01_RestAPI_inPHP/ToJson_one_search.php?keyword='+selector,
         success: function(response) {
             done(response);
          }
@@ -52,6 +49,8 @@ $('#demo').pagination({
         }
     },
 })
+}
+
 
 function template(data){
   var html= "";
@@ -74,3 +73,15 @@ function template(data){
 
   return html;
 }
+
+$(document).ready(function() {
+    // console.log( "ready!" );
+    pagination();
+    var popup_btn = $('.popup-btn');
+    popup_btn.magnificPopup({
+    type : 'image',
+    gallery : {
+        enabled : true
+    }
+    });
+    });
